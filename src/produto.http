@@ -1,0 +1,165 @@
+### listando produtos
+GET http://localhost:8080/produtos
+Accept: application/json
+
+### cadastrando mouse com foto
+POST http://localhost:8080/produtos
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc5MTU5MjAxOCwiZXhwIjoxNzkxNjc4NDE4fQ.EGMbRaKladJPMYW9l4METFBV4KOuo3M_znHjlWZZ-0o
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="produto"; filename="produto.json"
+Content-Type: application/json
+
+{
+  "nome": "Mouse",
+  "preco": 10,
+  "categoria": {
+    "id": 1
+  }
+}
+
+--WebAppBoundary
+Content-Disposition: form-data; name="foto"; filename="mouse.png"
+Content-Type: image/png
+
+< C:\Users\aluno\Downloads\mouse.png
+--WebAppBoundary--
+
+
+
+### cadastrando produto com manual PDF e foto
+POST http://localhost:8080/produtos
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc5MTU5MjQ1OSwiZXhwIjoxNzkxNjc4ODU5fQ.99XDYOzdFkiicZ53ad0Op9zolNsZBH6h9quEdBr5OWE
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="produto"; filename="produto.json"
+Content-Type: application/json
+
+{
+  "nome": "Monitor 4K",
+  "preco": 2200.00,
+  "categoria": {
+    "id": 1
+  }
+}
+
+--WebAppBoundary
+Content-Disposition: form-data; name="foto"; filename="tv.png"
+Content-Type: image/png
+
+< C:\Users\aluno\Downloads\tv.png
+--WebAppBoundary
+Content-Disposition: form-data; name="manual"; filename="manual.pdf"
+Content-Type: application/pdf
+
+< C:\Users\aluno\Downloads\manual_tv.pdf
+--WebAppBoundary--
+
+
+
+### cadastrando teclado
+POST http://localhost:8080/produtos
+Content-Type: application/json
+
+{
+  "nome": "teclado",
+  "preco": 100,
+  "categoria": {
+    "id": 1
+  }
+}
+
+### alterando produto de id 1
+PUT http://localhost:8080/produtos/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc5MTU4OTkxMiwiZXhwIjoxNzkxNjc2MzEyfQ.txidex-9K2QzL384zuhZSB67ljBK3FSkRDuuFl5l-w0
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="produto"; filename="produto.json"
+Content-Type: application/json
+
+{
+  "nome": "Teclado Novo",
+  "preco": 120,
+  "categoria": {
+    "id": 1
+  }
+}
+
+--WebAppBoundary
+Content-Disposition: form-data; name="foto"; filename="teclado.png"
+Content-Type: image/png
+
+< C:\Users\aluno\Downloads\teclado.png
+--WebAppBoundary--
+
+
+
+### Alterando produto com manual PDF e foto
+PUT http://localhost:8080/produtos/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc5MTU5MjQ1OSwiZXhwIjoxNzkxNjc4ODU5fQ.99XDYOzdFkiicZ53ad0Op9zolNsZBH6h9quEdBr5OWE
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="produto"; filename="produto.json"
+Content-Type: application/json
+
+{
+  "nome": "Monitor 4K LG",
+  "preco": 2500.00,
+  "categoria": {
+    "id": 1
+  }
+}
+
+--WebAppBoundary
+Content-Disposition: form-data; name="foto"; filename="tv.png"
+Content-Type: image/png
+
+< C:\Users\aluno\Downloads\tv.png
+--WebAppBoundary
+Content-Disposition: form-data; name="manual"; filename="manual.pdf"
+Content-Type: application/pdf
+
+< C:\Users\aluno\Downloads\manual_tv.pdf
+--WebAppBoundary--
+
+
+
+
+### alterando o produto de id 1
+PUT http://localhost:8080/produtos/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2FxdWltIiwiaWF0IjoxNzkwODUxNzc1LCJleHAiOjE3OTA5MzgxNzV9.FtM6L3yivOveLpEfrhJr9Q_3ec-SBDZ0lESv-9hATpQ
+Content-Type: application/json
+
+{
+  "nome": "teclado Slim",
+  "preco": 100,
+  "categoria": {
+    "id": 1
+  }
+}
+
+### excluindo o produto de id 2
+DELETE http://localhost:8080/produtos/2
+
+
+### filtro nome
+GET http://localhost:8080/produtos/filtro-nome?nome=tec
+
+### filtro preco
+GET http://localhost:8080/produtos/filtro-preco?valor=500
+
+### listando produto pelo id
+GET http://localhost:8080/produtos/1
+
+### teste validação de cadastro
+POST http://localhost:8080/produtos
+Content-Type: application/json
+
+{
+  "nome": "",
+  "preco": -100
+}
